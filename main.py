@@ -1,5 +1,5 @@
 import yt_dlp
-
+import time
 
 def download_youtube_video(video_url, save_path="downloads", audvid=True):
     ydl_opts = {
@@ -7,6 +7,7 @@ def download_youtube_video(video_url, save_path="downloads", audvid=True):
         'outtmpl': f'{save_path}/%(title)s.%(ext)s',  # Save file format
         #'merge_output_format': 'mp4' if audvid else 'mp3',  # Merge video and audio into MP4 format
         'noplaylist': True, # Only download the single video, not the whole playlist if it's part of one
+        'cookiesfrombrowser': 'chrome',
     }
     if audvid:
         ydl_opts['merge_output_format'] = 'mp4'  # Ensure video + audio is merged into MP4
@@ -18,6 +19,7 @@ def download_youtube_video(video_url, save_path="downloads", audvid=True):
         }]
 
     try:
+        time.sleep(2)
         print(f"Downloading: {video_url}")
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([video_url])
