@@ -1,7 +1,18 @@
 import yt_dlp
 import time
+import os
+import shutil
+
+def get_writable_cookie_file():
+    source_path = '/etc/secrets/cookies.txt'
+    temp_path = '/tmp/cookies.txt'
+    
+    # Copy the file from the secure (read-only) location to /tmp
+    shutil.copyfile(source_path, temp_path)
+    return temp_path
 
 def download_youtube_video(video_url, save_path="downloads", audvid=True):
+    get_writable_cookie_file()
     ydl_opts = {
         'format': 'bestvideo+bestaudio/best' if audvid else 'bestaudio/best',  # Download best video and audio and merge
         'outtmpl': f'{save_path}/%(title)s.%(ext)s',  # Save file format
