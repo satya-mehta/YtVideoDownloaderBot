@@ -41,6 +41,20 @@ def send_message(chat_id, text):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     requests.post(url, json={"chat_id": chat_id,"text": text})
 
+def send_file(chat_id, file_path):
+    url = f"https://api.telegram.org/bot{TOKEN}/sendDocument"
+    try:
+        with open(file_path, "rb") as file:
+            response = requests.post(url, data={"chat_id": chat_id}, files={"document": file})
+        if response.status_code == 200:
+            print(f"File sent successfully: {file_path}")
+            os.remove(file_path)
+            print(f"File deleted: {file_path}")
+        else:
+            print(f"failed to send file. status code: {response.status_code}, Response: {response.text}")
+    except Exception as e:
+        print(f"Error sending file: {e}")
+
 if __name__ == "__main__":
     set_webhook()
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
