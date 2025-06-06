@@ -7,7 +7,14 @@ def download_youtube_video(video_url, save_path="downloads", audvid=True):
         'outtmpl': f'{save_path}/%(title)s.%(ext)s',  # Save file format
         #'merge_output_format': 'mp4' if audvid else 'mp3',  # Merge video and audio into MP4 format
         'noplaylist': True, # Only download the single video, not the whole playlist if it's part of one
-        'cookiesfrombrowser': 'firefox',
+        'cookiefile': '/etc/secrets/cookies.txt',  # Use the secure file path
+        'http_headers': {
+            'User-Agent': (
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                'AppleWebKit/537.36 (KHTML, like Gecko) '
+                'Chrome/96.0.4664.55 Safari/537.36'
+            )
+        },
     }
     if audvid:
         ydl_opts['merge_output_format'] = 'mp4'  # Ensure video + audio is merged into MP4
