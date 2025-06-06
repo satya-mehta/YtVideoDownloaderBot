@@ -5,13 +5,13 @@ import main
 
 from flask import request
 
-Token = "7150884626:AAGMo7q4Rg-o9wDxo5PwI-Cwz46ip9rBc5M"
+TOKEN = "7150884626:AAGMo7q4Rg-o9wDxo5PwI-Cwz46ip9rBc5M"
 WEBHOOK_URL = ""
 
 app = flask.Flask(__name__)
 
 def set_webhook():
-    url = f"https://api.telegram.org/bot{Token}/setWebhook?url={WEBHOOK_URL}"
+    url = f"https://api.telegram.org/bot{TOKEN}/setWebhook?url={WEBHOOK_URL}"
     response = requests.get(url)
     return response.json()
 
