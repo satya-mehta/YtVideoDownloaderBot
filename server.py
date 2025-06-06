@@ -28,7 +28,7 @@ def webhook():
         chat_id = data["message"]["chat"]["id"]
         text = data["message"]["text"]
 
-        if text.stratswith("https://www.youtube.com/"):
+        if text.startswith("https://www.youtube.com/"):
             video_url = text
             send_message(chat_id, "Download started!")
             main.download_youtube_video(video_url)
