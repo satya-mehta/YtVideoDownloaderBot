@@ -5,7 +5,7 @@ import main
 
 from flask import request
 
-TOKEN = "8063579055:AAG_6y5rECOqcleMKe_XTET8Dgjda3RtJbw"
+TOKEN = ""
 WEBHOOK_URL = "https://ytdownloadontelegram.onrender.com"
 
 app = flask.Flask(__name__)
