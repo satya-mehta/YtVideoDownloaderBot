@@ -19,7 +19,7 @@ def set_webhook():
 def home():
     return "Bot is running!"
 
-@app.route("/webhook", method=["POST"])
+@app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.json
 
