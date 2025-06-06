@@ -10,7 +10,7 @@ WEBHOOK_URL = "https://ytdownloadontelegram.onrender.com"
 
 app = flask.Flask(__name__)
 
-def split_file(file_path, max_size=50 * 1024 * 1024):
+def split_file(file_path, max_size=45 * 1024 * 1024):
     """
     Splits the file into chunks of size max_size and returns a list of part file paths.
     """
