@@ -59,11 +59,11 @@ def webhook():
             if file_path:
                 file_parts = split_file(file_path)
                 if len(file_parts) > 1:
-                    send_message(chat_id, f"File size is larger than allowed size limit, sending files in {part.len()} parts")
+                    send_message(chat_id, f"File size is larger than allowed size limit, sending files in {len(file_parts)} parts")
                 for part in file_parts:
                     send_file(chat_id, part)
             else:
-                send_message(chat_id, "Unknoen error Occured")
+                send_message(chat_id, "Unknown error Occured")
         if text.startswith("/start"):
             send_message(chat_id, "Welcome to the bot interface.")
     return "OK"
