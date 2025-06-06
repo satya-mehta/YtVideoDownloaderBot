@@ -41,10 +41,11 @@ def download_youtube_video(video_url, save_path="downloads", audvid=True):
         print(f"Downloading: {video_url}")
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(video_url, download=True)
-            ext = "mp4" if audvid else "mp3"
-            title = info_dict.get('title', 'video')
-            # Construct the full file path based on your outtmpl
-            final_path = os.path.join(save_path, f"{title}.{ext}")
+
+            final_path = ydl.prepare_filename(info_dict)
+            
+            if not audvid:
+                final_path = os.path.splitext(final_path)[0] + '.mp3'
         print(f"Video downloaded successfully and saved in: {final_path}")
         return final_path
     except Exception as e:
