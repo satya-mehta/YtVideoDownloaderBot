@@ -5,7 +5,7 @@ import main
 
 from flask import request
 
-TOKEN = "7150884626:AAGMo7q4Rg-o9wDxo5PwI-Cwz46ip9rBc5M"
+TOKEN = "8063579055:AAG_6y5rECOqcleMKe_XTET8Dgjda3RtJbw"
 WEBHOOK_URL = "https://ytdownloadontelegram.onrender.com"
 
 app = flask.Flask(__name__)
@@ -26,7 +26,8 @@ def split_file(file_path, max_size=45 * 1024 * 1024):
             chunk = f.read(max_size)
             if not chunk:
                 break
-            part_filename = f"{file_path}.part{part_num:03d}"
+            base, ext = os.path.splitext(file_path)
+            part_filename = f"{base}.part{part_num:03d}{ext}"
             with open(part_filename, "wb") as part_file:
                 part_file.write(chunk)
             parts.append(part_filename)
