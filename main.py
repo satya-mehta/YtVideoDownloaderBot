@@ -1,5 +1,5 @@
 import yt_dlp
-import time
+from datetime import time
 
 def download_youtube_video(video_url, save_path="downloads", audvid=True):
     ydl_opts = {
