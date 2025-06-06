@@ -31,8 +31,12 @@ def webhook():
         if text.startswith("https://www.youtube.com/"):
             video_url = text
             send_message(chat_id, "Download started!")
-            main.download_youtube_video(video_url)
-            send_message(chat_id, "Download complete!")
+            file_path = main.download_youtube_video(video_url)
+            send_message(chat_id, "Download complete! sending file in 3 secs...")
+            if file_path != None:
+                send_file(chat_id, file_path)
+            else:
+                send_message(chat_id, "Unknoen error Occured")
         if text.startswith("/start"):
             send_message(chat_id, "Welcome to the bot interface.")
     return "OK"
