@@ -22,6 +22,7 @@ def home():
 @app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.json
+    print("Recieved data :", data)
 
     if "message" in data:
         chat_id = data["message"]["chat"]["id"]
@@ -32,6 +33,8 @@ def webhook():
             send_message(chat_id, "Download started!")
             main.download_youtube_video(video_url)
             send_message(chat_id, "Download complete!")
+        if text.startswith("/start"):
+            send_message(chat_id, "Welcome to the bot interface.")
     return "OK"
 
 def send_message(chat_id, text):
