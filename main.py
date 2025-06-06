@@ -12,13 +12,13 @@ def get_writable_cookie_file():
     return temp_path
 
 def download_youtube_video(video_url, save_path="downloads", audvid=True):
-    get_writable_cookie_file()
+    cookie_file = get_writable_cookie_file()
     ydl_opts = {
         'format': 'bestvideo+bestaudio/best' if audvid else 'bestaudio/best',  # Download best video and audio and merge
         'outtmpl': f'{save_path}/%(title)s.%(ext)s',  # Save file format
         #'merge_output_format': 'mp4' if audvid else 'mp3',  # Merge video and audio into MP4 format
         'noplaylist': True, # Only download the single video, not the whole playlist if it's part of one
-        'cookiefile': '/etc/secrets/cookies.txt',  # Use the secure file path
+        'cookiefile': cookie_file,  # Use the secure file path
         'http_headers': {
             'User-Agent': (
                 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
