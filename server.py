@@ -58,7 +58,7 @@ def webhook():
             send_message(chat_id, "Download complete! sending file in 3 secs...")
             if file_path:
                 file_parts = split_file(file_path)
-                if part.len() > 1:
+                if len(file_parts) > 1:
                     send_message(chat_id, f"File size is larger than allowed size limit, sending files in {part.len()} parts")
                 for part in file_parts:
                     send_file(chat_id, part)
